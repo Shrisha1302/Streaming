@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="RYVANTA Tech Innovation Challenge 2026 — Live Event Countdown Timer" />
+  <title>RYVANTA 2026 — Countdown Timer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       SCAN-LINE OVERLAY  (subtle CRT effect)
+  ════════════════════════════════════════════ -->
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════════════════════
+       AMBIENT BACKGROUND GLOW
+  ════════════════════════════════════════════ -->
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN WRAPPER
+  ════════════════════════════════════════════ -->
+  <main class="stage" id="stage">
+
+    <!-- ── TOP: Event Logo ──────────────────── -->
+    <header class="logo-zone" id="logoZone">
+      <img
+        src="ryvanta logo.png"
+        alt="RYVANTA Tech Innovation Challenge 2026"
+        class="event-logo"
+        id="eventLogo"
+        draggable="false"
+      />
+    </header>
+
+    <!-- ── CENTER: Countdown Timer ──────────── -->
+    <section class="timer-zone" id="timerZone" aria-live="polite" aria-label="Countdown timer">
+
+      <!-- Paused Banner -->
+      <div class="pause-banner" id="pauseBanner">
+        <span class="pause-icon">⏸</span>
+        <span
+          class="pause-label"
+          id="pauseLabel"
+          contenteditable="true"
+          spellcheck="false"
+          title="Click to edit this message"
+          aria-label="Pause message — click to edit"
+        >TIMER PAUSED</span>
+        <span class="edit-hint">✎</span>
+      </div>
+
+      <!-- Digits -->
+      <div class="digits-row" id="digitsRow">
+        <div class="digit-block">
+          <span class="digit" id="hours">05</span>
+          <span class="unit-label">HOURS</span>
+        </div>
+
+        <div class="colon-block" aria-hidden="true">
+          <span class="colon" id="colon1">:</span>
+        </div>
+
+        <div class="digit-block">
+          <span class="digit" id="minutes">00</span>
+          <span class="unit-label">MINUTES</span>
+        </div>
+
+        <div class="colon-block" aria-hidden="true">
+          <span class="colon" id="colon2">:</span>
+        </div>
+
+        <div class="digit-block">
+          <span class="digit digit--seconds" id="seconds">00</span>
+          <span class="unit-label">SECONDS</span>
+        </div>
+      </div>
+
+      <!-- ✦ START SCREEN — shown before timer begins ✦ -->
+      <div class="start-screen" id="startScreen">
+        <div class="start-inner">
+          <div class="start-ready">READY TO START</div>
+          <button class="start-btn" id="startBtn">
+            <span class="start-btn-icon">▶</span>
+            START TIMER
+          </button>
+          <div class="start-hint">Press <kbd>Space</kbd> or click to begin</div>
+        </div>
+      </div>
+
+      <!-- ✦ LAUNCH SEQUENCE OVERLAY — 5…4…3…2…1 → message ✦ -->
+      <div class="launch-screen" id="launchScreen">
+        <!-- Countdown digit -->
+        <div class="launch-digit" id="launchDigit"></div>
+        <!-- "Hackathon begins" message (shown after 1) -->
+        <div class="launch-msg" id="launchMsg">
+          <span class="launch-msg-line1">AND NOW THE</span>
+          <span class="launch-msg-line2">HACKATHON BEGINS</span>
+          <span class="launch-msg-dots">..</span>
+        </div>
+        <!-- Optional ring pulse behind the digit -->
+        <div class="launch-ring" id="launchRing"></div>
+      </div>
+
+      <!-- Time's Up Screen -->
+      <div class="timesup-screen" id="timesupScreen" aria-live="assertive">
+        <div class="timesup-inner">
+          <div class="timesup-icon">⚡</div>
+          <div class="timesup-text">TIME'S UP!</div>
+          <div class="timesup-sub">Thank you for participating</div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── BOTTOM: Sponsor Carousel ─────────── -->
+    <footer class="sponsor-zone" id="sponsorZone">
+      <div class="sponsor-label">OUR SPONSORS</div>
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="carouselTrack">
+          <!-- Logos injected by JS so the duplicate set can be appended easily -->
+        </div>
+      </div>
+    </footer>
+
+  </main><!-- /stage -->
+
+  <!-- ═══════════════════════════════════════════
+       CONTROL PANEL  (bottom-right corner)
+  ════════════════════════════════════════════ -->
+  <div class="control-panel" id="controlPanel">
+
+    <!-- Gear toggle -->
+    <button class="ctrl-gear" id="gearBtn" title="Toggle Controls  (G)" aria-label="Open organiser controls">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+    </button>
+
+    <!-- Expanded controls drawer -->
+    <div class="ctrl-drawer" id="ctrlDrawer">
+
+      <div class="ctrl-drawer-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        ORGANISER CONTROLS
+      </div>
+
+      <div class="ctrl-row">
+        <button class="ctrl-btn ctrl-btn--primary" id="pauseBtn" title="Space">
+          <span id="pauseBtnIcon">⏸</span>
+          <span id="pauseBtnText">PAUSE</span>
+        </button>
+
+        <button class="ctrl-btn" id="fullscreenBtn" title="F">
+          <span>⛶</span>
+          <span>FULLSCREEN</span>
+        </button>
+      </div>
+
+      <div class="ctrl-row">
+        <button class="ctrl-btn ctrl-btn--danger" id="resetBtn" title="Reset to 05:00:00">
+          <span>↺</span>
+          <span>RESET</span>
+        </button>
+
+        <!-- Custom duration setter -->
+        <div class="duration-set">
+          <input type="number" id="durationHours"   class="dur-input" min="0" max="23" placeholder="H"  title="Hours" />
+          <span class="dur-sep">:</span>
+          <input type="number" id="durationMinutes" class="dur-input" min="0" max="59" placeholder="M"  title="Minutes" />
+          <button class="ctrl-btn ctrl-btn--set" id="setDurationBtn" title="Set custom duration">SET</button>
+        </div>
+      </div>
+
+      <div class="ctrl-divider"></div>
+
+      <!-- Pause message pre-edit -->
+      <div class="ctrl-field-label">PAUSE SCREEN MESSAGE</div>
+      <div class="ctrl-row">
+        <input
+          type="text"
+          id="pauseMessageInput"
+          class="pause-msg-input"
+          placeholder="e.g. LUNCH BREAK"
+          maxlength="40"
+          spellcheck="false"
+          value="TIMER PAUSED"
+          title="This text appears on screen when timer is paused"
+        />
+      </div>
+
+      <div class="ctrl-divider"></div>
+
+      <div class="kbd-hints">
+        <span><kbd>Space</kbd> Pause / Resume</span>
+        <span><kbd>F</kbd> Fullscreen</span>
+        <span><kbd>G</kbd> Controls</span>
+      </div>
+
+    </div><!-- /ctrl-drawer -->
+
+  </div><!-- /control-panel -->
+
+  <script src="timer.js"></script>
+</body>
+</html>

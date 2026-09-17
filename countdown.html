@@ -18,29 +18,34 @@
   <div class="scanlines" aria-hidden="true"></div>
 
   <!-- ═══════════════════════════════════════════
-       HAMBURGER NAV
-  ════════════════════════════════════════════ -->
-  <!-- Scrim -->
-  <div class="ham-scrim" id="hamScrim"></div>
-  <!-- Button -->
-  <button class="ham-btn" id="hamBtn" aria-label="Open navigation">
-    <span class="ham-bar"></span>
-    <span class="ham-bar"></span>
-    <span class="ham-bar"></span>
-  </button>
-  <!-- Drawer -->
-  <nav class="ham-nav" id="hamNav" aria-label="Site navigation">
-    <a class="nav-link" href="home.html"><span class="nav-icon">🏠</span> Home</a>
-    <div class="nav-divider"></div>
-    <a class="nav-link active" href="index.html"><span class="nav-icon">⏱</span> Timer</a>
-    <div class="nav-divider"></div>
-    <a class="nav-link" href="winners.html"><span class="nav-icon">🏆</span> Winners</a>
-  </nav>
-
-  <!-- ═══════════════════════════════════════════
        AMBIENT BACKGROUND GLOW
   ════════════════════════════════════════════ -->
   <div class="bg-glow" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════════════════════
+       TOP-RIGHT NAVIGATION
+  ════════════════════════════════════════════ -->
+  <nav class="top-nav" id="topNav">
+    <!-- Hamburger (visible on small screens) -->
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <!-- Nav links -->
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-item active" id="navHome">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>HOME</span>
+      </a>
+      <a href="index.html" class="nav-item" id="navTimer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>TIMER</span>
+      </a>
+      <a href="winners.html" class="nav-item" id="navWinners">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>WINNERS</span>
+      </a>
+    </div>
+  </nav>
 
   <!-- ═══════════════════════════════════════════
        MAIN WRAPPER

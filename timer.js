@@ -222,6 +222,7 @@ function beginMainTimer() {
 
   // UI
   dom.pauseBanner.classList.remove('visible');
+  dom.digitsRow.classList.remove('paused');   // restore full-size digits
   dom.pauseBtnIcon.textContent = '⏸';
   dom.pauseBtnText.textContent = 'PAUSE';
   dom.colon1.style.animationPlayState = 'running';
@@ -241,6 +242,7 @@ function pauseTimer() {
 
   // UI
   dom.pauseBanner.classList.add('visible');
+  dom.digitsRow.classList.add('paused');    // shrink digits to background
   dom.pauseBtnIcon.textContent = '▶';
   dom.pauseBtnText.textContent = 'RESUME';
   dom.colon1.style.animationPlayState = 'paused';
@@ -509,4 +511,34 @@ document.querySelector('.edit-hint')?.addEventListener('click', () => {
       dom.pauseLabel.textContent = v || CONFIG.pauseMessage;
     }
   });
+})();
+
+/* ═══════════════════════════════════════════════════════════
+   HAMBURGER NAV  (shared across pages)
+═══════════════════════════════════════════════════════════ */
+(function initNav() {
+  const btn   = document.getElementById('hamBtn');
+  const nav   = document.getElementById('hamNav');
+  const scrim = document.getElementById('hamScrim');
+  if (!btn || !nav || !scrim) return;
+
+  function openNav() {
+    btn.classList.add('open');
+    nav.classList.add('open');
+    scrim.classList.add('visible');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+  function closeNav() {
+    btn.classList.remove('open');
+    nav.classList.remove('open');
+    scrim.classList.remove('visible');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+  function toggleNav() {
+    btn.classList.contains('open') ? closeNav() : openNav();
+  }
+
+  btn.addEventListener('click', toggleNav);
+  scrim.addEventListener('click', closeNav);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
 })();

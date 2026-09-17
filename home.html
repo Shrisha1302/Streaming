@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="RYVANTA 2026 — National Level Tech Innovation Challenge" />
+  <title>RYVANTA 2026 — Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <!-- HAMBURGER NAV -->
+  <div class="ham-scrim" id="hamScrim"></div>
+  <button class="ham-btn" id="hamBtn" aria-label="Open navigation">
+    <span class="ham-bar"></span>
+    <span class="ham-bar"></span>
+    <span class="ham-bar"></span>
+  </button>
+  <nav class="ham-nav" id="hamNav" aria-label="Site navigation">
+    <a class="nav-link active" href="home.html"><span class="nav-icon">🏠</span> Home</a>
+    <div class="nav-divider"></div>
+    <a class="nav-link" href="index.html"><span class="nav-icon">⏱</span> Timer</a>
+    <div class="nav-divider"></div>
+    <a class="nav-link" href="winners.html"><span class="nav-icon">🏆</span> Winners</a>
+  </nav>
+
+  <!-- HOME CONTENT -->
+  <main class="home-stage">
+
+    <!-- Top text -->
+    <div>
+      <p class="home-dept">Department of Information Technology</p>
+      <p class="home-dept" style="margin-top:6px;letter-spacing:0.18em;opacity:.4;font-size:clamp(0.6rem,1.1vw,0.85rem)">Organizing</p>
+    </div>
+
+    <!-- Logo -->
+    <img
+      src="ryvanta logo.png"
+      alt="RYVANTA Tech Innovation Challenge 2026"
+      class="home-logo"
+      draggable="false"
+    />
+
+    <!-- Event title & tagline -->
+    <div>
+      <p class="home-event-title">National Level Tech Innovation Challenge</p>
+      <p class="home-tagline" style="margin-top:14px;">"Turn Problem Into Possibilities"</p>
+    </div>
+
+    <!-- Sponsors -->
+    <div class="home-sponsors-grid">
+      <p class="home-sponsors-label">Our Sponsors</p>
+      <img src="sponsor1.jpeg" alt="Sponsor" class="home-sponsor-img" />
+      <img src="sponsor2.jpeg" alt="Sponsor" class="home-sponsor-img" />
+      <img src="sponsor3.jpeg" alt="Sponsor" class="home-sponsor-img" />
+      <img src="sponsor4.jpeg" alt="Sponsor" class="home-sponsor-img" />
+      <img src="sponsor5.jpeg" alt="Sponsor" class="home-sponsor-img" />
+      <img src="sponsor6.jpeg" alt="Sponsor" class="home-sponsor-img" />
+      <img src="sponsor7.jpeg" alt="Sponsor" class="home-sponsor-img" />
+    </div>
+
+  </main>
+
+  <script>
+    // Hamburger nav (inline — no external dependency needed)
+    (function initNav() {
+      const btn   = document.getElementById('hamBtn');
+      const nav   = document.getElementById('hamNav');
+      const scrim = document.getElementById('hamScrim');
+      if (!btn || !nav || !scrim) return;
+      function openNav()  { btn.classList.add('open'); nav.classList.add('open'); scrim.classList.add('visible'); }
+      function closeNav() { btn.classList.remove('open'); nav.classList.remove('open'); scrim.classList.remove('visible'); }
+      btn.addEventListener('click', () => btn.classList.contains('open') ? closeNav() : openNav());
+      scrim.addEventListener('click', closeNav);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+    })();
+  </script>
+</body>
+</html>

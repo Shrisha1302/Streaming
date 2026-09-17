@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="RYVANTA 2026 — Winners Announcement" />
+  <title>RYVANTA 2026 — Winners</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <!-- HAMBURGER NAV -->
+  <div class="ham-scrim" id="hamScrim"></div>
+  <button class="ham-btn" id="hamBtn" aria-label="Open navigation">
+    <span class="ham-bar"></span>
+    <span class="ham-bar"></span>
+    <span class="ham-bar"></span>
+  </button>
+  <nav class="ham-nav" id="hamNav" aria-label="Site navigation">
+    <a class="nav-link" href="home.html"><span class="nav-icon">🏠</span> Home</a>
+    <div class="nav-divider"></div>
+    <a class="nav-link" href="index.html"><span class="nav-icon">⏱</span> Timer</a>
+    <div class="nav-divider"></div>
+    <a class="nav-link active" href="winners.html"><span class="nav-icon">🏆</span> Winners</a>
+  </nav>
+
+  <!-- WINNERS CONTENT -->
+  <main class="winners-stage">
+
+    <!-- Teaser (shown first) -->
+    <div class="reveal-teaser" id="teaser">
+      <p class="reveal-eyebrow">RYVANTA '26</p>
+      <h1 class="reveal-headline">
+        <span class="hl-white">AND THE </span><span class="hl-green">WINNERS</span><span class="hl-white"> ARE…</span>
+      </h1>
+      <p class="reveal-sub">Innovation deserves recognition.</p>
+      <p class="reveal-moment">THE MOMENT HAS ARRIVED</p>
+      <button class="reveal-btn" id="revealBtn">REVEAL WINNERS</button>
+    </div>
+
+    <!-- Winners grid (hidden until button click) -->
+    <div class="winners-grid" id="winnersGrid">
+
+      <!-- HACKATHON -->
+      <p class="winners-section-title">⚡ Hackathon</p>
+      <div class="winners-cards">
+
+        <!-- 1st Place -->
+        <div class="winner-card">
+          <div class="medal-wrap">
+            <span class="medal-icon">🏅</span>
+            <span class="medal-badge gold">1</span>
+          </div>
+          <p class="place-label">First Place</p>
+          <p
+            class="team-name"
+            contenteditable="true"
+            spellcheck="false"
+            title="Click to edit"
+          >TEAM NAME</p>
+          <p
+            class="college-name"
+            contenteditable="true"
+            spellcheck="false"
+            title="Click to edit"
+          >College Name</p>
+        </div>
+
+        <!-- 2nd Place -->
+        <div class="winner-card">
+          <div class="medal-wrap">
+            <span class="medal-icon">🏅</span>
+            <span class="medal-badge silver">2</span>
+          </div>
+          <p class="place-label">Second Place</p>
+          <p
+            class="team-name"
+            contenteditable="true"
+            spellcheck="false"
+            title="Click to edit"
+          >TEAM NAME</p>
+          <p
+            class="college-name"
+            contenteditable="true"
+            spellcheck="false"
+            title="Click to edit"
+          >College Name</p>
+        </div>
+
+      </div>
+
+      <!-- CAPTURE THE FLAG -->
+      <p class="winners-section-title" style="margin-top:12px;">🚩 Capture the Flag</p>
+      <div class="winners-cards">
+
+        <!-- 1st Place -->
+        <div class="winner-card">
+          <div class="medal-wrap">
+            <span class="medal-icon">🏅</span>
+            <span class="medal-badge gold">1</span>
+          </div>
+          <p class="place-label">First Place</p>
+          <p
+            class="team-name"
+            contenteditable="true"
+            spellcheck="false"
+            title="Click to edit"
+          >TEAM NAME</p>
+          <p
+            class="college-name"
+            contenteditable="true"
+            spellcheck="false"
+            title="Click to edit"
+          >College Name</p>
+        </div>
+
+        <!-- 2nd Place -->
+        <div class="winner-card">
+          <div class="medal-wrap">
+            <span class="medal-icon">🏅</span>
+            <span class="medal-badge silver">2</span>
+          </div>
+          <p class="place-label">Second Place</p>
+          <p
+            class="team-name"
+            contenteditable="true"
+            spellcheck="false"
+            title="Click to edit"
+          >TEAM NAME</p>
+          <p
+            class="college-name"
+            contenteditable="true"
+            spellcheck="false"
+            title="Click to edit"
+          >College Name</p>
+        </div>
+
+      </div>
+    </div><!-- /winners-grid -->
+
+  </main>
+
+  <script>
+    // Hamburger nav
+    (function initNav() {
+      const btn   = document.getElementById('hamBtn');
+      const nav   = document.getElementById('hamNav');
+      const scrim = document.getElementById('hamScrim');
+      if (!btn || !nav || !scrim) return;
+      function openNav()  { btn.classList.add('open'); nav.classList.add('open'); scrim.classList.add('visible'); }
+      function closeNav() { btn.classList.remove('open'); nav.classList.remove('open'); scrim.classList.remove('visible'); }
+      btn.addEventListener('click', () => btn.classList.contains('open') ? closeNav() : openNav());
+      scrim.addEventListener('click', closeNav);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+    })();
+
+    // Reveal winners button
+    document.getElementById('revealBtn').addEventListener('click', function () {
+      const teaser = document.getElementById('teaser');
+      const grid   = document.getElementById('winnersGrid');
+      // Fade out teaser
+      teaser.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      teaser.style.opacity    = '0';
+      teaser.style.transform  = 'scale(0.95)';
+      setTimeout(() => {
+        teaser.style.display = 'none';
+        grid.classList.add('shown');
+        // Animate in each card
+        const cards = grid.querySelectorAll('.winner-card');
+        cards.forEach((c, i) => {
+          c.style.opacity   = '0';
+          c.style.transform = 'translateY(24px)';
+          c.style.transition = `opacity 0.5s ease ${i * 0.12}s, transform 0.5s ease ${i * 0.12}s`;
+          requestAnimationFrame(() => {
+            c.style.opacity   = '1';
+            c.style.transform = 'translateY(0)';
+          });
+        });
+      }, 500);
+    });
+  </script>
+</body>
+</html>

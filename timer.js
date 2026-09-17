@@ -303,71 +303,9 @@ function resetTimer(seconds) {
 ═══════════════════════════════════════════════════════════ */
 
 function buildCarousel() {
-  const track = dom.carouselTrack;
-  track.innerHTML = '';
-
-  if (!CONFIG.sponsors.length) return;
-
-  // Build two full sets so the duplicate-set trick creates seamless loop
-  const makeSet = () =>
-    CONFIG.sponsors.map(src => {
-      const img = document.createElement('img');
-      img.src      = src;
-      img.alt      = src.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ');
-      img.className = 'sponsor-logo';
-      img.loading  = 'lazy';
-      img.draggable = false;
-      return img;
-    });
-
-  const set1 = makeSet();
-  const set2 = makeSet();
-
-  [...set1, ...set2].forEach(img => track.appendChild(img));
-
-  // After images have loaded, measure actual track width and set animation duration
-  // We wait for at least the first image to load before measuring
-  const firstImg = set1[0];
-  const setDuration = () => {
-    // Half the track = one full set width
-    const halfWidth = track.scrollWidth / 2;
-    const duration  = halfWidth / CONFIG.carouselSpeed; // seconds
-    track.style.setProperty('--track-width', `-${halfWidth}px`);
-    track.style.animationDuration = `${duration}s`;
-    // Override the @keyframes to property to use the measured value
-    track.style.setProperty('--half-width', halfWidth + 'px');
-    updateCarouselKeyframe(halfWidth);
-  };
-
-  if (firstImg.complete) {
-    // Small delay so all images have had a chance to layout
-    setTimeout(setDuration, 100);
-  } else {
-    firstImg.addEventListener('load', () => setTimeout(setDuration, 100));
-    // Fallback: estimate even if images fail
-    setTimeout(setDuration, 1500);
+  if (typeof window.initSponsorCarousel === 'function') {
+    window.initSponsorCarousel();
   }
-}
-
-/**
- * Inject a dynamic @keyframes rule that translates exactly half the
- * carousel track width — makes the loop perfectly seamless regardless
- * of how many sponsors there are.
- */
-function updateCarouselKeyframe(halfWidth) {
-  // Remove old dynamic rule if present
-  const existingStyle = document.getElementById('carousel-keyframe-style');
-  if (existingStyle) existingStyle.remove();
-
-  const style = document.createElement('style');
-  style.id = 'carousel-keyframe-style';
-  style.textContent = `
-    @keyframes scrollLeft {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-${halfWidth}px); }
-    }
-  `;
-  document.head.appendChild(style);
 }
 
 /* ═══════════════════════════════════════════════════════════

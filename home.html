@@ -7,7 +7,7 @@
   <title>RYVANTA 2026 — Home</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -33,42 +33,39 @@
   <!-- HOME CONTENT -->
   <main class="home-stage">
 
-    <!-- Top text -->
-    <div>
-      <p class="home-dept">Department of Information Technology</p>
-      <p class="home-dept" style="margin-top:6px;letter-spacing:0.18em;opacity:.4;font-size:clamp(0.6rem,1.1vw,0.85rem)">Organizing</p>
+    <header class="logo-zone">
+      <div class="dept-header">
+        <span class="dept-title">Department of Information Technology</span>
+        <span class="dept-sub">organises</span>
+      </div>
+      <img
+        src="ryvanta logo.png"
+        alt="RYVANTA Tech Innovation Challenge 2026"
+        class="home-logo"
+        draggable="false"
+      />
+    </header>
+
+    <div class="home-main-text">
+      <h1 class="home-event-title">National Level Tech Innovation challenge</h1>
+      <p class="home-tagline">"Turn Problem Into Possibilities"</p>
     </div>
 
-    <!-- Logo -->
-    <img
-      src="ryvanta logo.png"
-      alt="RYVANTA Tech Innovation Challenge 2026"
-      class="home-logo"
-      draggable="false"
-    />
-
-    <!-- Event title & tagline -->
-    <div>
-      <p class="home-event-title">National Level Tech Innovation Challenge</p>
-      <p class="home-tagline" style="margin-top:14px;">"Turn Problem Into Possibilities"</p>
-    </div>
-
-    <!-- Sponsors -->
-    <div class="home-sponsors-grid">
-      <p class="home-sponsors-label">Our Sponsors</p>
-      <img src="sponsor1.jpeg" alt="Sponsor" class="home-sponsor-img" />
-      <img src="sponsor2.jpeg" alt="Sponsor" class="home-sponsor-img" />
-      <img src="sponsor3.jpeg" alt="Sponsor" class="home-sponsor-img" />
-      <img src="sponsor4.jpeg" alt="Sponsor" class="home-sponsor-img" />
-      <img src="sponsor5.jpeg" alt="Sponsor" class="home-sponsor-img" />
-      <img src="sponsor6.jpeg" alt="Sponsor" class="home-sponsor-img" />
-      <img src="sponsor7.jpeg" alt="Sponsor" class="home-sponsor-img" />
-    </div>
+    <!-- SPONSOR CAROUSEL (Left to Right) -->
+    <footer class="sponsor-zone">
+      <div class="sponsor-label">OUR SPONSORS</div>
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="carouselTrack">
+          <!-- Logos injected by carousel.js -->
+        </div>
+      </div>
+    </footer>
 
   </main>
 
+  <script src="carousel.js"></script>
   <script>
-    // Hamburger nav (inline — no external dependency needed)
+    // Hamburger nav logic
     (function initNav() {
       const btn   = document.getElementById('hamBtn');
       const nav   = document.getElementById('hamNav');

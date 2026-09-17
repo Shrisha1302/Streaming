@@ -7,7 +7,7 @@
   <title>RYVANTA 2026 — Winners</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -44,108 +44,188 @@
       <button class="reveal-btn" id="revealBtn">REVEAL WINNERS</button>
     </div>
 
-    <!-- Winners grid (hidden until button click) -->
+    <!-- Winners grid (hidden until reveal button click) -->
     <div class="winners-grid" id="winnersGrid">
 
-      <!-- HACKATHON -->
-      <p class="winners-section-title">⚡ Hackathon</p>
-      <div class="winners-cards">
+      <!-- ⚡ HACKATHON (3 Prizes) -->
+      <section class="winners-category">
+        <h2 class="winners-section-title">⚡ Hackathon</h2>
+        <div class="winners-cards">
 
-        <!-- 1st Place -->
-        <div class="winner-card">
-          <div class="medal-wrap">
-            <span class="medal-icon">🏅</span>
-            <span class="medal-badge gold">1</span>
+          <!-- 1st Place -->
+          <div class="winner-card gold-card">
+            <div class="card-header">
+              <div class="medal-wrap">
+                <span class="medal-icon">🥇</span>
+                <span class="medal-badge gold">1</span>
+              </div>
+              <p class="place-label">First Place</p>
+            </div>
+            <div class="editable-group">
+              <span class="field-label">TEAM NAME</span>
+              <p class="team-name" contenteditable="true" spellcheck="false" data-default="TEAM NAME" title="Click to edit Team Name">TEAM NAME</p>
+            </div>
+            <div class="editable-group">
+              <span class="field-label">COLLEGE NAME</span>
+              <p class="college-name" contenteditable="true" spellcheck="false" data-default="College Name" title="Click to edit College Name">College Name</p>
+            </div>
+            <span class="edit-badge">✎ Click to edit</span>
           </div>
-          <p class="place-label">First Place</p>
-          <p
-            class="team-name"
-            contenteditable="true"
-            spellcheck="false"
-            title="Click to edit"
-          >TEAM NAME</p>
-          <p
-            class="college-name"
-            contenteditable="true"
-            spellcheck="false"
-            title="Click to edit"
-          >College Name</p>
-        </div>
 
-        <!-- 2nd Place -->
-        <div class="winner-card">
-          <div class="medal-wrap">
-            <span class="medal-icon">🏅</span>
-            <span class="medal-badge silver">2</span>
+          <!-- 2nd Place -->
+          <div class="winner-card silver-card">
+            <div class="card-header">
+              <div class="medal-wrap">
+                <span class="medal-icon">🥈</span>
+                <span class="medal-badge silver">2</span>
+              </div>
+              <p class="place-label">Second Place</p>
+            </div>
+            <div class="editable-group">
+              <span class="field-label">TEAM NAME</span>
+              <p class="team-name" contenteditable="true" spellcheck="false" data-default="TEAM NAME" title="Click to edit Team Name">TEAM NAME</p>
+            </div>
+            <div class="editable-group">
+              <span class="field-label">COLLEGE NAME</span>
+              <p class="college-name" contenteditable="true" spellcheck="false" data-default="College Name" title="Click to edit College Name">College Name</p>
+            </div>
+            <span class="edit-badge">✎ Click to edit</span>
           </div>
-          <p class="place-label">Second Place</p>
-          <p
-            class="team-name"
-            contenteditable="true"
-            spellcheck="false"
-            title="Click to edit"
-          >TEAM NAME</p>
-          <p
-            class="college-name"
-            contenteditable="true"
-            spellcheck="false"
-            title="Click to edit"
-          >College Name</p>
-        </div>
 
-      </div>
-
-      <!-- CAPTURE THE FLAG -->
-      <p class="winners-section-title" style="margin-top:12px;">🚩 Capture the Flag</p>
-      <div class="winners-cards">
-
-        <!-- 1st Place -->
-        <div class="winner-card">
-          <div class="medal-wrap">
-            <span class="medal-icon">🏅</span>
-            <span class="medal-badge gold">1</span>
+          <!-- 3rd Place -->
+          <div class="winner-card bronze-card">
+            <div class="card-header">
+              <div class="medal-wrap">
+                <span class="medal-icon">🥉</span>
+                <span class="medal-badge bronze">3</span>
+              </div>
+              <p class="place-label">Third Place</p>
+            </div>
+            <div class="editable-group">
+              <span class="field-label">TEAM NAME</span>
+              <p class="team-name" contenteditable="true" spellcheck="false" data-default="TEAM NAME" title="Click to edit Team Name">TEAM NAME</p>
+            </div>
+            <div class="editable-group">
+              <span class="field-label">COLLEGE NAME</span>
+              <p class="college-name" contenteditable="true" spellcheck="false" data-default="College Name" title="Click to edit College Name">College Name</p>
+            </div>
+            <span class="edit-badge">✎ Click to edit</span>
           </div>
-          <p class="place-label">First Place</p>
-          <p
-            class="team-name"
-            contenteditable="true"
-            spellcheck="false"
-            title="Click to edit"
-          >TEAM NAME</p>
-          <p
-            class="college-name"
-            contenteditable="true"
-            spellcheck="false"
-            title="Click to edit"
-          >College Name</p>
-        </div>
 
-        <!-- 2nd Place -->
-        <div class="winner-card">
-          <div class="medal-wrap">
-            <span class="medal-icon">🏅</span>
-            <span class="medal-badge silver">2</span>
+        </div>
+      </section>
+
+      <!-- 🚩 CAPTURE THE FLAG (2 Prizes) -->
+      <section class="winners-category">
+        <h2 class="winners-section-title">🚩 Capture The Flag</h2>
+        <div class="winners-cards">
+
+          <!-- 1st Place -->
+          <div class="winner-card gold-card">
+            <div class="card-header">
+              <div class="medal-wrap">
+                <span class="medal-icon">🥇</span>
+                <span class="medal-badge gold">1</span>
+              </div>
+              <p class="place-label">First Place</p>
+            </div>
+            <div class="editable-group">
+              <span class="field-label">TEAM NAME</span>
+              <p class="team-name" contenteditable="true" spellcheck="false" data-default="TEAM NAME" title="Click to edit Team Name">TEAM NAME</p>
+            </div>
+            <div class="editable-group">
+              <span class="field-label">COLLEGE NAME</span>
+              <p class="college-name" contenteditable="true" spellcheck="false" data-default="College Name" title="Click to edit College Name">College Name</p>
+            </div>
+            <span class="edit-badge">✎ Click to edit</span>
           </div>
-          <p class="place-label">Second Place</p>
-          <p
-            class="team-name"
-            contenteditable="true"
-            spellcheck="false"
-            title="Click to edit"
-          >TEAM NAME</p>
-          <p
-            class="college-name"
-            contenteditable="true"
-            spellcheck="false"
-            title="Click to edit"
-          >College Name</p>
-        </div>
 
-      </div>
+          <!-- 2nd Place -->
+          <div class="winner-card silver-card">
+            <div class="card-header">
+              <div class="medal-wrap">
+                <span class="medal-icon">🥈</span>
+                <span class="medal-badge silver">2</span>
+              </div>
+              <p class="place-label">Second Place</p>
+            </div>
+            <div class="editable-group">
+              <span class="field-label">TEAM NAME</span>
+              <p class="team-name" contenteditable="true" spellcheck="false" data-default="TEAM NAME" title="Click to edit Team Name">TEAM NAME</p>
+            </div>
+            <div class="editable-group">
+              <span class="field-label">COLLEGE NAME</span>
+              <p class="college-name" contenteditable="true" spellcheck="false" data-default="College Name" title="Click to edit College Name">College Name</p>
+            </div>
+            <span class="edit-badge">✎ Click to edit</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 🎮 2D GAME DEVELOPMENT (2 Prizes) -->
+      <section class="winners-category">
+        <h2 class="winners-section-title">🎮 2D Game Development</h2>
+        <div class="winners-cards">
+
+          <!-- 1st Place -->
+          <div class="winner-card gold-card">
+            <div class="card-header">
+              <div class="medal-wrap">
+                <span class="medal-icon">🥇</span>
+                <span class="medal-badge gold">1</span>
+              </div>
+              <p class="place-label">First Place</p>
+            </div>
+            <div class="editable-group">
+              <span class="field-label">TEAM NAME</span>
+              <p class="team-name" contenteditable="true" spellcheck="false" data-default="TEAM NAME" title="Click to edit Team Name">TEAM NAME</p>
+            </div>
+            <div class="editable-group">
+              <span class="field-label">COLLEGE NAME</span>
+              <p class="college-name" contenteditable="true" spellcheck="false" data-default="College Name" title="Click to edit College Name">College Name</p>
+            </div>
+            <span class="edit-badge">✎ Click to edit</span>
+          </div>
+
+          <!-- 2nd Place -->
+          <div class="winner-card silver-card">
+            <div class="card-header">
+              <div class="medal-wrap">
+                <span class="medal-icon">🥈</span>
+                <span class="medal-badge silver">2</span>
+              </div>
+              <p class="place-label">Second Place</p>
+            </div>
+            <div class="editable-group">
+              <span class="field-label">TEAM NAME</span>
+              <p class="team-name" contenteditable="true" spellcheck="false" data-default="TEAM NAME" title="Click to edit Team Name">TEAM NAME</p>
+            </div>
+            <div class="editable-group">
+              <span class="field-label">COLLEGE NAME</span>
+              <p class="college-name" contenteditable="true" spellcheck="false" data-default="College Name" title="Click to edit College Name">College Name</p>
+            </div>
+            <span class="edit-badge">✎ Click to edit</span>
+          </div>
+
+        </div>
+      </section>
+
     </div><!-- /winners-grid -->
+
+    <!-- SPONSOR CAROUSEL (Left to Right) -->
+    <footer class="sponsor-zone" style="margin-top:auto; width:100%;">
+      <div class="sponsor-label">OUR SPONSORS</div>
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="carouselTrack">
+          <!-- Logos injected by carousel.js -->
+        </div>
+      </div>
+    </footer>
 
   </main>
 
+  <script src="carousel.js"></script>
   <script>
     // Hamburger nav
     (function initNav() {
@@ -160,29 +240,46 @@
       document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
     })();
 
-    // Reveal winners button
+    // Reveal winners button animation
     document.getElementById('revealBtn').addEventListener('click', function () {
       const teaser = document.getElementById('teaser');
       const grid   = document.getElementById('winnersGrid');
-      // Fade out teaser
-      teaser.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+
+      teaser.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
       teaser.style.opacity    = '0';
       teaser.style.transform  = 'scale(0.95)';
+
       setTimeout(() => {
         teaser.style.display = 'none';
         grid.classList.add('shown');
-        // Animate in each card
+
+        // Stagger entrance animation for winner cards
         const cards = grid.querySelectorAll('.winner-card');
-        cards.forEach((c, i) => {
-          c.style.opacity   = '0';
-          c.style.transform = 'translateY(24px)';
-          c.style.transition = `opacity 0.5s ease ${i * 0.12}s, transform 0.5s ease ${i * 0.12}s`;
+        cards.forEach((card, index) => {
+          card.style.opacity   = '0';
+          card.style.transform = 'translateY(24px)';
+          card.style.transition = `opacity 0.45s ease ${index * 0.08}s, transform 0.45s ease ${index * 0.08}s`;
           requestAnimationFrame(() => {
-            c.style.opacity   = '1';
-            c.style.transform = 'translateY(0)';
+            card.style.opacity   = '1';
+            card.style.transform = 'translateY(0)';
           });
         });
-      }, 500);
+      }, 400);
+    });
+
+    // Contenteditable keydown & blur helper (prevents newlines, handles blank reset)
+    document.querySelectorAll('[contenteditable="true"]').forEach(el => {
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          el.blur();
+        }
+      });
+      el.addEventListener('blur', () => {
+        if (!el.textContent.trim()) {
+          el.textContent = el.getAttribute('data-default') || 'Click to Edit';
+        }
+      });
     });
   </script>
 </body>

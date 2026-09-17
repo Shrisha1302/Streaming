@@ -24,7 +24,7 @@
   --digit-size:    clamp(5rem, 18vw, 20rem);
   --colon-size:    clamp(4rem, 14vw, 16rem);
   --unit-size:     clamp(0.65rem, 1.4vw, 1.25rem);
-  --logo-height:   clamp(70px, 9vw, 140px);
+  --logo-height:   clamp(100px, 13vw, 200px);
 }
 
 /* ── Reset ──────────────────────────────────────────────────── */

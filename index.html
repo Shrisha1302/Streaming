@@ -17,24 +17,22 @@
   ════════════════════════════════════════════ -->
   <div class="scanlines" aria-hidden="true"></div>
 
-  <!-- ═══════════════════════════════════════════
-       HAMBURGER NAV
-  ════════════════════════════════════════════ -->
-  <!-- Scrim -->
-  <div class="ham-scrim" id="hamScrim"></div>
-  <!-- Button -->
-  <button class="ham-btn" id="hamBtn" aria-label="Open navigation">
-    <span class="ham-bar"></span>
-    <span class="ham-bar"></span>
-    <span class="ham-bar"></span>
-  </button>
-  <!-- Drawer -->
-  <nav class="ham-nav" id="hamNav" aria-label="Site navigation">
-    <a class="nav-link" href="home.html"><span class="nav-icon">🏠</span> Home</a>
+  <!-- FLOATING PILL NAVBAR / BREADCRUMBS -->
+  <nav class="pill-nav" aria-label="Site navigation">
+    <a class="pill-nav-link" href="home.html">
+      <span class="pill-icon">🏠</span>
+      <span class="pill-text">HOME</span>
+    </a>
     <div class="nav-divider"></div>
-    <a class="nav-link active" href="index.html"><span class="nav-icon">⏱</span> Timer</a>
+    <a class="pill-nav-link active" href="index.html">
+      <span class="pill-icon">⏱</span>
+      <span class="pill-text">TIMER</span>
+    </a>
     <div class="nav-divider"></div>
-    <a class="nav-link" href="winners.html"><span class="nav-icon">🏆</span> Winners</a>
+    <a class="pill-nav-link" href="winners.html">
+      <span class="pill-icon">🏆</span>
+      <span class="pill-text">WINNERS</span>
+    </a>
   </nav>
 
   <!-- ═══════════════════════════════════════════
@@ -54,7 +52,8 @@
         <span class="dept-sub">organises</span>
       </div>
       <img
-        src="ryvanta logo.png"
+        src="ryvanta logo.jpeg"
+        onerror="this.onerror=null;this.src='ryvanta logo.png';"
         alt="RYVANTA Tech Innovation Challenge 2026"
         class="event-logo"
         id="eventLogo"

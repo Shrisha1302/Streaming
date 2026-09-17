@@ -13,21 +13,28 @@
 <body>
 
   <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- TECH ANIMATION CANVAS -->
+  <canvas id="techCanvas" aria-hidden="true"></canvas>
+
   <div class="bg-glow" aria-hidden="true"></div>
 
-  <!-- HAMBURGER NAV -->
-  <div class="ham-scrim" id="hamScrim"></div>
-  <button class="ham-btn" id="hamBtn" aria-label="Open navigation">
-    <span class="ham-bar"></span>
-    <span class="ham-bar"></span>
-    <span class="ham-bar"></span>
-  </button>
-  <nav class="ham-nav" id="hamNav" aria-label="Site navigation">
-    <a class="nav-link" href="home.html"><span class="nav-icon">🏠</span> Home</a>
+  <!-- FLOATING PILL NAVBAR / BREADCRUMBS -->
+  <nav class="pill-nav" aria-label="Site navigation">
+    <a class="pill-nav-link" href="home.html">
+      <span class="pill-icon">🏠</span>
+      <span class="pill-text">HOME</span>
+    </a>
     <div class="nav-divider"></div>
-    <a class="nav-link" href="index.html"><span class="nav-icon">⏱</span> Timer</a>
+    <a class="pill-nav-link" href="countdown.html">
+      <span class="pill-icon">⏱</span>
+      <span class="pill-text">TIMER</span>
+    </a>
     <div class="nav-divider"></div>
-    <a class="nav-link active" href="winners.html"><span class="nav-icon">🏆</span> Winners</a>
+    <a class="pill-nav-link active" href="winners.html">
+      <span class="pill-icon">🏆</span>
+      <span class="pill-text">WINNERS</span>
+    </a>
   </nav>
 
   <!-- WINNERS CONTENT -->
@@ -226,20 +233,8 @@
   </main>
 
   <script src="carousel.js"></script>
+  <script src="tech-bg.js"></script>
   <script>
-    // Hamburger nav
-    (function initNav() {
-      const btn   = document.getElementById('hamBtn');
-      const nav   = document.getElementById('hamNav');
-      const scrim = document.getElementById('hamScrim');
-      if (!btn || !nav || !scrim) return;
-      function openNav()  { btn.classList.add('open'); nav.classList.add('open'); scrim.classList.add('visible'); }
-      function closeNav() { btn.classList.remove('open'); nav.classList.remove('open'); scrim.classList.remove('visible'); }
-      btn.addEventListener('click', () => btn.classList.contains('open') ? closeNav() : openNav());
-      scrim.addEventListener('click', closeNav);
-      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
-    })();
-
     // Reveal winners button animation
     document.getElementById('revealBtn').addEventListener('click', function () {
       const teaser = document.getElementById('teaser');

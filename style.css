@@ -114,12 +114,11 @@ body {
   max-width: 65vw;
   object-fit: contain;
   object-position: center;
-  /* screen blend removes white backgrounds on a pure black canvas */
+  /* screen blend removes dark backgrounds on a pure black/dark canvas */
   mix-blend-mode: screen;
-  filter: drop-shadow(0 0 18px rgba(0,255,127,0.35));
-  transition: filter 0.4s ease;
+  transition: opacity 0.4s ease;
 }
-.event-logo:hover { filter: drop-shadow(0 0 28px rgba(0,255,127,0.6)); }
+.event-logo:hover { opacity: 0.8; }
 
 /* ══════════════════════════════════════════════════════════════
    CENTER  — Timer

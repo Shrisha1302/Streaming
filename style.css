@@ -31,22 +31,40 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
-  height: 100%;
-  /* Prevent mobile from resizing when keyboard pops */
-  overflow: hidden;
+  min-height: 100%;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
-  min-height: 100%;
+  min-height: 100vh;
   background: var(--black);
   color: var(--white);
   font-family: var(--font-ui);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   /* Crisp rendering on projectors */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   user-select: none;
+}
+
+/* ── Custom Sleek Scrollbar ───────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050d08;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 127, 0.35);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--green);
+  box-shadow: 0 0 10px rgba(0, 255, 127, 0.8);
 }
 
 /* ── Subtle scan-line CRT texture ───────────────────────────── */
@@ -82,7 +100,7 @@ body {
 }
 
 /* ══════════════════════════════════════════════════════════════
-   STAGE  —  full-screen 16:9 flex column
+   STAGE  —  responsive flex column
 ══════════════════════════════════════════════════════════════ */
 .stage {
   position: relative;
@@ -91,10 +109,13 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
   padding: clamp(10px, 2vw, 30px) 0 0;
-  gap: 0;
+  gap: clamp(12px, 2vh, 24px);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* ══════════════════════════════════════════════════════════════

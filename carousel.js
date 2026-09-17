@@ -1,6 +1,5 @@
 /**
- * RYVANTA 2026 — Sponsor Carousel
- * Renders and animates sponsors in an infinite seamless loop moving Left to Right.
+ * RYVANTA 2026 — Sponsor Carousel & Animated Background Particles
  */
 
 'use strict';
@@ -81,9 +80,71 @@ function initSponsorCarousel() {
   window.addEventListener('resize', setDuration);
 }
 
+/**
+ * Animated Floating Energy Particles Canvas
+ */
+function initBgParticles() {
+  const canvas = document.getElementById('bgCanvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  let width = (canvas.width = window.innerWidth);
+  let height = (canvas.height = window.innerHeight);
+
+  const particles = [];
+  const particleCount = Math.min(Math.floor((width * height) / 16000), 75);
+
+  for (let i = 0; i < particleCount; i++) {
+    particles.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      radius: Math.random() * 2.2 + 0.6,
+      alpha: Math.random() * 0.6 + 0.2,
+      speedY: Math.random() * 0.45 + 0.15,
+      speedX: (Math.random() - 0.5) * 0.25,
+      pulseSpeed: Math.random() * 0.02 + 0.005,
+    });
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+
+    for (let p of particles) {
+      p.y -= p.speedY;
+      p.x += p.speedX;
+      p.alpha += Math.sin(Date.now() * p.pulseSpeed) * 0.005;
+
+      if (p.y < -10) p.y = height + 10;
+      if (p.x < -10) p.x = width + 10;
+      if (p.x > width + 10) p.x = -10;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0, 255, 127, ${Math.max(0.15, Math.min(0.85, p.alpha))})`;
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = '#00ff7f';
+      ctx.fill();
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+
+  animate();
+}
+
 // Auto-init on DOM load
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initSponsorCarousel);
-} else {
+function initAll() {
   initSponsorCarousel();
+  initBgParticles();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAll);
+} else {
+  initAll();
 }

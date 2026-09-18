@@ -55,7 +55,7 @@
     <div class="winners-grid" id="winnersGrid">
 
       <!-- ⚡ HACKATHON (3 Prizes) -->
-      <section class="winners-category">
+      <section class="winners-category" id="section-hackathon">
         <h2 class="winners-section-title">⚡ Hackathon</h2>
         <div class="winners-cards">
 
@@ -120,10 +120,14 @@
           </div>
 
         </div>
+        <!-- Down arrow to next section -->
+        <button class="scroll-down-arrow" data-target="section-ctf" aria-label="Scroll to next event">
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
       </section>
 
       <!-- 🚩 CAPTURE THE FLAG (2 Prizes) -->
-      <section class="winners-category">
+      <section class="winners-category" id="section-ctf">
         <h2 class="winners-section-title">🚩 Capture The Flag</h2>
         <div class="winners-cards">
 
@@ -168,10 +172,14 @@
           </div>
 
         </div>
+        <!-- Down arrow to next section -->
+        <button class="scroll-down-arrow" data-target="section-gamedev" aria-label="Scroll to next event">
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
       </section>
 
       <!-- 🎮 2D GAME DEVELOPMENT (2 Prizes) -->
-      <section class="winners-category">
+      <section class="winners-category" id="section-gamedev">
         <h2 class="winners-section-title">🎮 2D Game Development</h2>
         <div class="winners-cards">
 
@@ -216,12 +224,13 @@
           </div>
 
         </div>
+        <!-- No down arrow on the last section -->
       </section>
 
     </div><!-- /winners-grid -->
 
     <!-- SPONSOR CAROUSEL (Left to Right) -->
-    <footer class="sponsor-zone" style="margin-top:auto; width:100%;">
+    <footer class="sponsor-zone" id="sponsorFooter" style="margin-top:auto; width:100%;">
       <div class="sponsor-label">OUR SPONSORS</div>
       <div class="carousel-viewport">
         <div class="carousel-track" id="carouselTrack">
@@ -237,8 +246,10 @@
   <script>
     // Reveal winners button animation
     document.getElementById('revealBtn').addEventListener('click', function () {
-      const teaser = document.getElementById('teaser');
-      const grid   = document.getElementById('winnersGrid');
+      const teaser  = document.getElementById('teaser');
+      const grid    = document.getElementById('winnersGrid');
+      const stage   = document.querySelector('.winners-stage');
+      const sponsor = document.getElementById('sponsorFooter');
 
       teaser.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
       teaser.style.opacity    = '0';
@@ -248,18 +259,64 @@
         teaser.style.display = 'none';
         grid.classList.add('shown');
 
-        // Stagger entrance animation for winner cards
-        const cards = grid.querySelectorAll('.winner-card');
-        cards.forEach((card, index) => {
-          card.style.opacity   = '0';
-          card.style.transform = 'translateY(24px)';
-          card.style.transition = `opacity 0.45s ease ${index * 0.08}s, transform 0.45s ease ${index * 0.08}s`;
-          requestAnimationFrame(() => {
-            card.style.opacity   = '1';
-            card.style.transform = 'translateY(0)';
+        // Switch to fullscreen scroll-snap mode
+        stage.classList.add('fullscreen-mode');
+        // Hide sponsor carousel so sections fill the screen
+        if (sponsor) sponsor.style.display = 'none';
+
+        // Stagger entrance animation for first visible section's cards
+        const firstSection = grid.querySelector('.winners-category');
+        if (firstSection) {
+          const cards = firstSection.querySelectorAll('.winner-card');
+          cards.forEach((card, index) => {
+            card.style.opacity   = '0';
+            card.style.transform = 'translateY(24px)';
+            card.style.transition = `opacity 0.45s ease ${index * 0.08}s, transform 0.45s ease ${index * 0.08}s`;
+            requestAnimationFrame(() => {
+              card.style.opacity   = '1';
+              card.style.transform = 'translateY(0)';
+            });
           });
+        }
+
+        // Animate cards as they scroll into view
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const cards = entry.target.querySelectorAll('.winner-card');
+              cards.forEach((card, index) => {
+                card.style.opacity   = '0';
+                card.style.transform = 'translateY(24px)';
+                card.style.transition = `opacity 0.45s ease ${index * 0.1}s, transform 0.45s ease ${index * 0.1}s`;
+                requestAnimationFrame(() => {
+                  requestAnimationFrame(() => {
+                    card.style.opacity   = '1';
+                    card.style.transform = 'translateY(0)';
+                  });
+                });
+              });
+            }
+          });
+        }, { root: grid, threshold: 0.3 });
+
+        // Observe all sections except the first (already animated)
+        const sections = grid.querySelectorAll('.winners-category');
+        sections.forEach((sec, i) => {
+          if (i > 0) observer.observe(sec);
         });
+
       }, 400);
+    });
+
+    // Down-arrow click handler — scroll to next section
+    document.querySelectorAll('.scroll-down-arrow').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const target   = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
     });
 
     // Contenteditable keydown & blur helper (prevents newlines, handles blank reset)
@@ -279,3 +336,4 @@
   </script>
 </body>
 </html>
+

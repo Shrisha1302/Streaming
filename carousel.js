@@ -18,6 +18,7 @@ const SPONSORS_CONFIG = {
     'sponsor5.jpeg',
     'sponsor6.jpeg',
     'sponsor7.jpeg',
+    'sponsor8.jpeg',
   ],
 };
 
